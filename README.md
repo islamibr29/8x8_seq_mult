@@ -15,16 +15,8 @@ The multiplier utilizes a sequential approach to perform the multiplication oper
 The multiplier's functionality is based on the mathematical principles of multiplication. It breaks down the 8-bit multiplicands `a` and `b` into 4-bit slices and performs partial multiplications. The final 16-bit product is obtained by summing the individual partial products according to the following equation:
 
 
-\[
-\begin{align*}
-\text{result}[15..0] &= a[7..0] \times b[7..0] \\
-&= ((a[7..4] \times 2^4) + a[3..0] \times 2^0) \times ((b[7..4] \times 2^4) + b[3..0] \times 2^0) \\
-&= ((a[7..4] \times b[7..4]) \times 2^8) + \\
-&\quad ((a[7..4] \times b[3..0]) \times 2^4) + \\
-&\quad ((a[3..0] \times b[7..4]) \times 2^4) + \\
-&\quad ((a[3..0] \times b[3..0]) \times 2^0)
-\end{align*}
-\]
+![CodeCogsEqn](https://github.com/islamibr/8x8_seq_mult/assets/49861069/d10aeb9d-f56b-451c-9eea-27d25b1fb2de)
+
 
 
 ### Shift-and-Add Multiplication
