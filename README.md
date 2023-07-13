@@ -108,8 +108,7 @@ During this time period, values that need to be processed within the datapath ar
 #### Adder 16-Bit
 ```
 module adder(
-  input [15:0] dataa,
-  input [15:0] datab,
+  input [15:0] dataa, datab,
   output [15:0] sum
 );
 
