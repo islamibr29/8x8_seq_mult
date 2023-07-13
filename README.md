@@ -129,7 +129,7 @@ module Adder16_bitTestBench;
   
   wire [15:0] sum;
   
-  Adder_16bit dut(
+  adder dut(
     .dataa(dataa),
     .datab(datab),
     .sum(sum)
@@ -179,7 +179,7 @@ module Multiplier4BitTestBench;
   
   wire [7:0] product;
   
-  multiplier_4bit dut(
+  mult4x4 dut(
     .dataa(dataa),
     .datab(datab),
     .product(product)
@@ -234,7 +234,7 @@ module Mux_TestBench();
  reg [1:0] selector;
  wire [3:0] aout;
  
- Mux mux(
+ mux4 mux(
  .dataa(dataa),
  .datab(datab),
  .selector(selector),
@@ -295,7 +295,7 @@ module Shifter_TestBench();
   reg [1:0] shift_cntrl;
   wire [15:0] shift_out;
 
-  Shifter DUT (
+  shifter DUT (
     .inp(inp),
     .shift_cntrl(shift_cntrl),
     .shift_out(shift_out)
@@ -377,7 +377,7 @@ module Synchronous_register_TestBench();
   reg [15:0] datain;
   wire [15:0] reg_out;
   
-  Synchronous_register DUT (
+  reg16 DUT (
     .clk(clk),
     .sclr_n(sclr_n),
     .clk_ena(clk_ena),
@@ -441,7 +441,7 @@ module Asynchronous_Counter_TestBench();
   wire [1:0] count;
 
   // Instantiate the Asynchronous_Counter module
-  Asynchronous_Counter DUT (
+  counter DUT (
     .clk(clk),
     .aclr_n(aclr_n),
     .count(count)
@@ -509,7 +509,7 @@ module Seven_Segment_Decoder_TestBench();
 reg [2:0] inp;
 wire seg_a, seg_b, seg_c, seg_d, seg_e, seg_f, seg_g;
 
-Seven_Segment_Decoder SSD (
+seven_segment_cntrl SSD (
 .inp(inp),
 .seg_a(seg_a),
 .seg_b(seg_b),
