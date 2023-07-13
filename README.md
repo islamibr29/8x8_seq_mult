@@ -120,6 +120,38 @@ endmodule
   <img src="https://github.com/islamibr/8x8_seq_mult/assets/49861069/6fe111f6-d24d-45d5-adc9-c2a4fa8f8830" alt="adder">
 </p>
 
+**Testbench**
+```
+module Adder16_bitTestBench;
+  
+  reg [15:0] dataa;
+  reg [15:0] datab;
+  
+  wire [15:0] sum;
+  
+  Adder_16bit dut(
+    .dataa(dataa),
+    .datab(datab),
+    .sum(sum)
+  );
+  
+  initial begin
+
+#10 
+dataa = 8'b 0000_1111;
+datab = 8'b 0110_1000;
+#10    
+dataa = 8'b 0011_1100;
+datab = 8'b 0100_1000;
+#10     
+dataa = 8'b 0000_0000;
+datab = 8'b 0000_1111;  
+  
+  end
+  
+endmodule
+```
+
 #### 4x4 Multiplier
 ```
 module mult4x4(
@@ -135,6 +167,39 @@ endmodule
 <p align="center">
   <img src="https://github.com/islamibr/8x8_seq_mult/assets/49861069/43ace1d4-3ac6-4f4a-8aeb-c70afadac861" alt="multi">
 </p>
+
+**Testbench**
+```
+module Multiplier4BitTestBench;
+ 
+  reg [3:0] dataa;
+  reg [3:0] datab;
+  
+  
+  wire [7:0] product;
+  
+  multiplier_4bit dut(
+    .dataa(dataa),
+    .datab(datab),
+    .product(product)
+  );
+  
+  initial begin
+ #10
+dataa = 5;
+datab = 3;
+ #10   
+dataa = 8;
+datab = 2;
+ #10
+dataa = 6;
+datab = 4;
+    
+  end
+
+endmodule
+```
+![image](https://github.com/islamibr/8x8_seq_mult/assets/49861069/1a463854-04a7-423b-8636-62cdb34484f3)
 
 ### Multiplexer
 ```
@@ -159,6 +224,38 @@ endmodule
 <p align="center">
   <img src="https://github.com/islamibr/8x8_seq_mult/assets/49861069/914b86aa-58e0-4c7d-b838-849e77e249b7" alt="mux">
 </p>
+
+**Testbench**
+```
+module Mux_TestBench();
+ reg [7:0] dataa;
+ reg [7:0] datab;
+ reg [1:0] selector;
+ wire [3:0] aout;
+ 
+ Mux mux(
+ .dataa(dataa),
+ .datab(datab),
+ .selector(selector),
+ .aout(aout),
+ );
+
+initial begin
+ 
+ dataa = 8'b 1111_0000;
+ datab = 8'b 1100_0011;
+   selector = 2'b 00;
+   #10
+   selector = 2'b 01;
+   #10
+   selector = 2'b 10;
+   #10
+   selector = 2'b 11;
+   
+end
+
+endmodule
+```
 
 ### Shifter
 - If shift_cntrl = 0 or 3, then no shift
@@ -188,6 +285,57 @@ endmodule
   <img src="https://github.com/islamibr/8x8_seq_mult/assets/49861069/b06a6c73-95ee-4c21-ac3c-0fd5f13964f1" alt="shift">
 </p>
 
+**Testbench**
+```
+module Shifter_TestBench();
+
+  reg [7:0] inp;
+  reg [1:0] shift_cntrl;
+  wire [15:0] shift_out;
+
+  Shifter DUT (
+    .inp(inp),
+    .shift_cntrl(shift_cntrl),
+    .shift_out(shift_out)
+  );
+  reg clk;
+  initial begin
+    inp = 8'b1010_1100;    
+    shift_cntrl = 2'b00;   
+    clk = 0;
+    #5;                   
+  end
+
+  // Toggle clock
+  always #5 clk = ~clk;
+
+  // Stimulus
+  initial begin
+    // Test case 1
+    #10 inp = 8'b1111_0000;
+    shift_cntrl = 2'b00;
+    #10;
+
+    // Test case 2
+    inp = 8'b0101_0101;
+    shift_cntrl = 2'b01;
+    #10;
+
+    // Test case 3
+    inp = 8'b0011_0011;
+    shift_cntrl = 2'b10;
+    #10;
+
+    // Test case 4
+    inp = 8'b1100_1100;
+    shift_cntrl = 2'b11;
+    #10;
+
+  end
+
+endmodule
+```
+![image](https://github.com/islamibr/8x8_seq_mult/assets/49861069/ecc4c517-b63c-4980-89a3-6cae655cab83)
 
 #### Synchronous 16-bit register
 - 16-bit register where sclr_n is a reset signal and clk_ena is a clock enable signal
@@ -218,6 +366,45 @@ endmodule
   <img src="https://github.com/islamibr/8x8_seq_mult/assets/49861069/a9ca6bb6-b094-4eba-bc15-b3304d626c7e" alt="reg">
 </p>
 
+**Testbench**
+```
+module Synchronous_register_TestBench();
+  reg clk;
+  reg sclr_n;
+  reg clk_ena;
+  reg [15:0] datain;
+  wire [15:0] reg_out;
+  
+  Synchronous_register DUT (
+    .clk(clk),
+    .sclr_n(sclr_n),
+    .clk_ena(clk_ena),
+    .datain(datain),
+    .reg_out(reg_out)
+  );
+
+
+  always #5 clk = ~clk;
+
+  initial begin
+    clk = 0;
+    sclr_n = 1;
+    clk_ena = 1;
+    datain = 16'b1010_1100_0101_0011;                               
+ 
+    #10 sclr_n = 0;
+    #10 sclr_n = 1;
+
+    #10 clk_ena = 0;
+    #10 clk_ena = 1;
+  
+end
+endmodule
+```
+
+![image](https://github.com/islamibr/8x8_seq_mult/assets/49861069/0a1c77f9-b0d1-47b5-bfb0-77511bf95464)
+
+
 #### Counter with asynchronous control
 - 2-bit counter where aclr_n is a reset signal 
 - If aclr_n is low, then counter goes to 00 immediately
@@ -242,6 +429,44 @@ endmodule
 <p align="center">
   <img src="https://github.com/islamibr/8x8_seq_mult/assets/49861069/251c1ba5-514b-4034-8ddc-0757ba2bcb4b" alt="reg">
 </p>
+
+**Testbench**
+```
+module Asynchronous_Counter_TestBench();
+  
+  reg clk;
+  reg aclr_n;
+  wire [1:0] count;
+
+  // Instantiate the Asynchronous_Counter module
+  Asynchronous_Counter DUT (
+    .clk(clk),
+    .aclr_n(aclr_n),
+    .count(count)
+  );
+
+  // Toggle the clock every 5 time units
+  always #5 begin
+    clk = ~clk;
+  end
+
+  // Initialize signals before simulation starts
+  initial begin
+    clk = 0;
+    aclr_n = 1;
+
+    // Assert asynchronous reset for 20 time units
+    #20;
+    aclr_n = 0;
+
+    // Deassert asynchronous reset after 20 time units
+    #20;
+    aclr_n = 1;
+    
+  end
+
+endmodule
+```
 
 #### Seven-Segment Display Decoder
 <p align="center">
@@ -274,6 +499,43 @@ endmodule
 <p align="center">
   <img src="https://github.com/islamibr/8x8_seq_mult/assets/49861069/06c8b88d-4344-4dbf-8ae5-7db80586a62b" alt="7seg">
 </p>
+
+**Testbench**
+```
+module Seven_Segment_Decoder_TestBench();
+reg [2:0] inp;
+wire seg_a, seg_b, seg_c, seg_d, seg_e, seg_f, seg_g;
+
+Seven_Segment_Decoder SSD (
+.inp(inp),
+.seg_a(seg_a),
+.seg_b(seg_b),
+.seg_c(seg_c),
+.seg_d(seg_d),
+.seg_e(seg_e),
+.seg_f(seg_f),
+.seg_g(seg_g));
+
+initial begin
+inp = 3'b000; // Test input 0
+#10;
+inp = 3'b001; // Test input I
+#10;
+inp = 3'b010; // Test input 2
+#10;
+inp = 3'b011; // Test input 3
+#10;
+inp = 3'b100; // Test input 4 (invalid input)
+#10;
+inp = 3'b101; // Test input 5 (invalid input)
+#10;
+inp = 3'b110; // Test input 6 (invalid input)
+#10;
+inp = 3'b111; // Test input 7 (invalid input)
+end
+endmodule
+```
+![image](https://github.com/islamibr/8x8_seq_mult/assets/49861069/1d1c2052-34ef-4bcc-9a90-59753c323e09)
 
 #### Multiplier controller
 This state machine will manage all the operations that occur within the 8x8 multiplier using 6 defined states: `idle`, `lsb`, `mid`, `msb`, `calc_done`, and `err`.
@@ -419,6 +681,100 @@ endmodule
 <p align="center">
   <img src="https://github.com/islamibr/8x8_seq_mult/assets/49861069/a74f365e-5dc8-4fc9-b435-e4e0ca370d4f" alt="mult-ctrl">
 </p>
+
+**Testbench**
+```
+module mult_control_Test;
+
+    // Inputs
+    reg clk;
+    reg reset_a;
+    reg start;
+    reg [1:0] count;
+
+    // Outputs
+    wire done;
+    wire clk_ena;
+    wire sclr_n;
+    wire [2:0] state_out;
+    wire [1:0] input_sel;
+    wire [1:0] shift_sel;
+
+    // Instantiate the Unit Under Test (UUT)
+    mult_control uut (
+        .clk(clk), 
+        .reset_a(reset_a), 
+        .start(start), 
+        .count(count), 
+        .done(done), 
+        .clk_ena(clk_ena), 
+        .sclr_n(sclr_n), 
+        .state_out(state_out), 
+        .input_sel(input_sel), 
+        .shift_sel(shift_sel)
+    );
+
+    initial begin
+        // Initialize Inputs
+        clk = 0;
+        reset_a = 0;
+        start = 0;
+        count = 0;
+
+        // Wait for 100 ns for global reset to finish
+        #100;
+        
+        // De-assert reset
+        reset_a = 1;
+        #100;
+
+        // Assert start and provide count
+        start = 1;
+        count = 2'b10;
+        #100;
+
+        // De-assert start
+        start = 0;
+        #100;
+
+        // Assert start and provide count
+        start = 1;
+        count = 2'b11;
+        #100;
+
+        // De-assert start
+        start = 0;
+        #100;
+
+        // Assert start and provide count
+        start = 1;
+        count = 2'b01;
+        #100;
+
+        // De-assert start
+        start = 0;
+        #100;
+
+        // Assert start and provide count
+        start = 1;
+        count = 2'b00;
+        #100;
+
+        // De-assert start
+        start = 0;
+        #100;
+
+        // Finish the simulation
+        $finish;
+    end
+
+    always #10 clk = ~clk;
+
+endmodule
+```
+
+![WhatsApp Image 2023-07-13 at 12 57 18 PM](https://github.com/islamibr/8x8_seq_mult/assets/49861069/7e880c83-469d-41ec-a19c-b8d243a6a6e6)
+
 
 #### Top-Level Code of the Multiplier
 ```
