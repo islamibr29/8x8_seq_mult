@@ -10,14 +10,18 @@ The project's goal is to build an 8x8 multiplier that takes two 8-bit multiplica
 
 The multiplier utilizes a sequential approach to perform the multiplication operation. During each of the four clock cycles, a pair of 4-bit slices from `dataa` and `datab` is multiplied by a 4x4 multiplier. The resulting 4-bit slices are then accumulated to obtain the final 16-bit product. On the fifth cycle, the fully composed 16-bit product is available at the output (`product8x8_out`).
 
+### Multiplexed Bi-Directional Bus
+
+The design incorporates a multiplexed bi-directional bus. This approach allows the same set of pins to be used for both input and output operations, reducing the overall number of pins required for the multiplier. By multiplexing the bus, the design achieves improved resource utilization and simplifies the interface.
+
+![image](https://github.com/islamibr/8x8_seq_mult/assets/49861069/edeb6b5c-360e-4018-acee-bc2effda3941)
+
 ## Mathematical Principle
 
 The multiplier's functionality is based on the mathematical principles of multiplication. It breaks down the 8-bit multiplicands `a` and `b` into 4-bit slices and performs partial multiplications. The final 16-bit product is obtained by summing the individual partial products according to the following equation:
 
 
 ![CodeCogsEqn](https://github.com/islamibr/8x8_seq_mult/assets/49861069/d10aeb9d-f56b-451c-9eea-27d25b1fb2de)
-
-
 
 ### Shift-and-Add Multiplication
 
@@ -46,13 +50,27 @@ By repeating the above procedure until all bits of A are shifted out, the partia
 ## Block Diagram
 
 The block diagram of the 8x8 bit sequential multiplier is shown below:
+![image](https://github.com/islamibr/8x8_seq_mult/assets/49861069/053b19f3-4d3a-4370-8e96-2c1fc8f947b6)
 
 
 The design consists of an 8x8 bit multiplier with 8-bit inputs (DataA and DataB) and a 16-bit output (Product8x8_out). The sequential approach is used to perform the multiplication, ensuring accurate results. The output is provided on a 16-bit bus, enabling efficient data transfer.
 
-## Multiplexed Bi-Directional Bus
+## Hardware-Oriented Multiplication Process
 
-The design incorporates a multiplexed bi-directional bus. This approach allows the same set of pins to be used for both input and output operations, reducing the overall number of pins required for the multiplier. By multiplexing the bus, the design achieves improved resource utilization and simplifies the interface.
+The 8x8 bit sequential multiplier design implements a hardware-oriented multiplication process. Let's explore the steps involved in this process:
+
+1. At time 0, because A[0] is 1, the partial sum of B + P is calculated. This partial sum, represented as 01101 (shown in the upper part of time 1), consists of 5 bits, including a carry. The rightmost bit of this partial sum is shifted into the A register, replacing the old value of A. The remaining bits of the partial sum replace the old value of P. During this shifting operation, a 0 is moved into the A[0] position.
+
+2. At time 1, the new value in A is observed. Since A[0] is 0, the calculation changes to 0000 + P instead of B + P. This results in a new value of 00110. The rightmost bit of this value is shifted into A, while the other bits replace the old value of P.
+
+3. This process repeats for a total of 4 cycles. During each cycle, the multiplication process proceeds as described above. At the end of the fourth cycle, both the A and P registers hold the final multiplication result. The least significant 4 bits of the result are stored in A, while the most significant bits are stored in P.
+
+For example, consider the operation of multiplying 9 and 13. By following the hardware-oriented multiplication process, the result obtained is 117.
+
+This hardware-oriented approach efficiently performs multiplication in the 8x8 bit sequential multiplier, gradually accumulating the result in the A and P registers over multiple cycles.
+
+![image](https://github.com/islamibr/8x8_seq_mult/assets/49861069/e08da817-3a64-43b8-942d-5c0aad0cc9b0)
+
 
 
 
