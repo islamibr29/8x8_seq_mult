@@ -13,7 +13,9 @@ The multiplier utilizes a sequential approach to perform the multiplication oper
 
 
 <p align="center">
-  <img src="https://github.com/islamibr/8x8_seq_mult/assets/49861069/820e43f6-c47f-4fd3-88b9-fefbf86687d2">
+  <img src="https://github.com/islamibr/8x8_seq_mult/assets/49861069/820e43f6-c47f-4fd3-88b9-fefbf86687d2" alt="Binary multiplier">
+  <br>
+  <em>Binary multiplier</em>
 </p>
 
 ## Mathematical Principle
