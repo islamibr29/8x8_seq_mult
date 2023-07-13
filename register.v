@@ -24,7 +24,7 @@ module Synchronous_register_TestBench();
   reg [15:0] datain;
   wire [15:0] reg_out;
   
-  Synchronous_register DUT (
+  reg16 DUT (
     .clk(clk),
     .sclr_n(sclr_n),
     .clk_ena(clk_ena),
