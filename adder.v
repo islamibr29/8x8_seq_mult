@@ -15,7 +15,7 @@ module Adder16_bitTestBench;
   
   wire [15:0] sum;
   
-  Adder_16bit dut(
+  adder dut(
     .dataa(dataa),
     .datab(datab),
     .sum(sum)
