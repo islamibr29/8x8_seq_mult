@@ -14,14 +14,18 @@ The multiplier utilizes a sequential approach to perform the multiplication oper
 
 The multiplier's functionality is based on the mathematical principles of multiplication. It breaks down the 8-bit multiplicands `a` and `b` into 4-bit slices and performs partial multiplications. The final 16-bit product is obtained by summing the individual partial products according to the following equation:
 
-\[\begin{align*}\text{result}[15..0] &= \text{a}[7..0] \times \text{b}[7..0] \\
-&= ((\text{a}[7..4] \times 2^4) + \text{a}[3..0] \times 2^0) \times ((\text{b}[7..4] \times 2^4) + \text{b}[3..0] \times 2^0) \\
-&= ((\text{a}[7..4] \times \text{b}[7..4]) \times 2^8) + \\
-&\quad ((\text{a}[7..4] \times \text{b}[3..0]) \times 2^4) + \\
-&\quad ((\text{a}[3..0] \times \text{b}[7..4]) \times 2^4) + \\
-&\quad ((\text{a}[3..0] \times \text{b}[3..0]) \times 2^0)
+
+\[
+\begin{align*}
+\text{result}[15..0] &= a[7..0] \times b[7..0] \\
+&= ((a[7..4] \times 2^4) + a[3..0] \times 2^0) \times ((b[7..4] \times 2^4) + b[3..0] \times 2^0) \\
+&= ((a[7..4] \times b[7..4]) \times 2^8) + \\
+&\quad ((a[7..4] \times b[3..0]) \times 2^4) + \\
+&\quad ((a[3..0] \times b[7..4]) \times 2^4) + \\
+&\quad ((a[3..0] \times b[3..0]) \times 2^0)
 \end{align*}
 \]
+
 
 ### Shift-and-Add Multiplication
 
