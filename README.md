@@ -37,10 +37,18 @@ In this modified procedure, if the observed bit of A is 0, 00000000 is added to 
 
 By repeating the above procedure until all bits of A are shifted out, the partial result becomes the final multiplication result. To illustrate this procedure, let's consider a 4-bit example. Figure 11.3 shows the initial state, where A = 1001 and B = 1101 are the operands to be multiplied. At time 0, A is in a shift register with a register for partial results (P) on its left.
 
-![image](https://github.com/islamibr/8x8_seq_mult/assets/49861069/5cf3ea8a-c4d0-45c3-b48c-b6bf53a121af)
-*Manual binary multiplication*
-![image](https://github.com/islamibr/8x8_seq_mult/assets/49861069/0296cb44-4010-452b-97f9-3c59fc1729bf)
-*Hardware binary multiplication*
+<p align="center">
+  <img src="https://github.com/islamibr/8x8_seq_mult/assets/49861069/5cf3ea8a-c4d0-45c3-b48c-b6bf53a121af" alt="Manual binary multiplication">
+  <br>
+  <em>Manual binary multiplication</em>
+</p>
+
+<p align="center">
+  <img src="https://github.com/islamibr/8x8_seq_mult/assets/49861069/0296cb44-4010-452b-97f9-3c59fc1729bf" alt="Hardware binary multiplication">
+  <br>
+  <em>Hardware binary multiplication</em>
+</p>
+
 
 ## Block Diagram
 
