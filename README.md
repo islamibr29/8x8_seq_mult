@@ -16,7 +16,6 @@ The multiplier utilizes a sequential approach to perform the multiplication oper
   <img src="https://github.com/islamibr/8x8_seq_mult/assets/49861069/820e43f6-c47f-4fd3-88b9-fefbf86687d2">
 </p>
 
-
 ## Mathematical Principle
 
 The multiplier's functionality is based on the mathematical principles of multiplication. It breaks down the 8-bit multiplicands `a` and `b` into 4-bit slices and performs partial multiplications. The final 16-bit product is obtained by summing the individual partial products according to the following equation:
