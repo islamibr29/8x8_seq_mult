@@ -23,7 +23,7 @@ module Shifter_TestBench();
   reg [1:0] shift_cntrl;
   wire [15:0] shift_out;
 
-  Shifter DUT (
+  shifter DUT (
     .inp(inp),
     .shift_cntrl(shift_cntrl),
     .shift_out(shift_out)
