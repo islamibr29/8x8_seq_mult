@@ -12,7 +12,9 @@ The project's goal is to build an 8x8 multiplier that takes two 8-bit multiplica
 The multiplier utilizes a sequential approach to perform the multiplication operation. During each of the four clock cycles, a pair of 4-bit slices from `dataa` and `datab` is multiplied by a 4x4 multiplier. The resulting 4-bit slices are then accumulated to obtain the final 16-bit product. On the fifth cycle, the fully composed 16-bit product is available at the output (`product8x8_out`).
 
 
-![image](https://github.com/islamibr/8x8_seq_mult/assets/49861069/820e43f6-c47f-4fd3-88b9-fefbf86687d2)
+<p align="center">
+  <img src="https://github.com/islamibr/8x8_seq_mult/assets/49861069/820e43f6-c47f-4fd3-88b9-fefbf86687d2">
+</p>
 
 
 ## Mathematical Principle
