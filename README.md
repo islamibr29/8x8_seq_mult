@@ -14,29 +14,16 @@ The multiplier utilizes a sequential approach to perform the multiplication oper
 
 The multiplier's functionality is based on the mathematical principles of multiplication. It breaks down the 8-bit multiplicands `a` and `b` into 4-bit slices and performs partial multiplications. The final 16-bit product is obtained by summing the individual partial products according to the following equation:
 
-result[15..0] = a[7..0] * b[7..0]
-= ((a[7..4] * 2^4) + a[3..0] * 2^0) * ((b[7..4] * 2^4) + b[3..0] * 2^0)
-= ((a[7..4] * b[7..4]) * 2^8) +
-  ((a[7..4] * b[3..0]) * 2^4) +
-  ((a[3..0] * b[7..4]) * 2^4) +
-  ((a[3..0] * b[3..0]) * 2^0)
+\[\begin{align*}\text{result}[15..0] &= \text{a}[7..0] \times \text{b}[7..0] \\
+&= ((\text{a}[7..4] \times 2^4) + \text{a}[3..0] \times 2^0) \times ((\text{b}[7..4] \times 2^4) + \text{b}[3..0] \times 2^0) \\
+&= ((\text{a}[7..4] \times \text{b}[7..4]) \times 2^8) + \\
+&\quad ((\text{a}[7..4] \times \text{b}[3..0]) \times 2^4) + \\
+&\quad ((\text{a}[3..0] \times \text{b}[7..4]) \times 2^4) + \\
+&\quad ((\text{a}[3..0] \times \text{b}[3..0]) \times 2^0)
+\end{align*}
+\]
 
-## Block Diagram
-
-The block diagram of the 8x8 bit sequential multiplier is shown below:
-
-
-The design consists of an 8x8 bit multiplier with 8-bit inputs (DataA and DataB) and a 16-bit output (Product8x8_out). The sequential approach is used to perform the multiplication, ensuring accurate results. The output is provided on a 16-bit bus, enabling efficient data transfer.
-
-## Multiplexed Bi-Directional Bus
-
-The design incorporates a multiplexed bi-directional bus. This approach allows the same set of pins to be used for both input and output operations, reducing the overall number of pins required for the multiplier. By multiplexing the bus, the design achieves improved resource utilization and simplifies the interface.
-
-##  Manual Binary Multiplication
-
-![image](https://github.com/islamibr/8x8_seq_mult/assets/49861069/0296cb44-4010-452b-97f9-3c59fc1729bf)
-
-## Shift-and-Add Multiplication
+### Shift-and-Add Multiplication
 
 When designing multipliers, there is always a trade-off between the speed of the multiplication process and the hardware resources used for its implementation. One simple multiplication method that is slow but efficient in terms of hardware utilization is the shift-and-add method.
 
@@ -55,4 +42,21 @@ In this modified procedure, if the observed bit of A is 0, 00000000 is added to 
 By repeating the above procedure until all bits of A are shifted out, the partial result becomes the final multiplication result. To illustrate this procedure, let's consider a 4-bit example. Figure 11.3 shows the initial state, where A = 1001 and B = 1101 are the operands to be multiplied. At time 0, A is in a shift register with a register for partial results (P) on its left.
 
 ![image](https://github.com/islamibr/8x8_seq_mult/assets/49861069/5cf3ea8a-c4d0-45c3-b48c-b6bf53a121af)
+
+###  Manual Binary Multiplication
+
+![image](https://github.com/islamibr/8x8_seq_mult/assets/49861069/0296cb44-4010-452b-97f9-3c59fc1729bf)
+
+## Block Diagram
+
+The block diagram of the 8x8 bit sequential multiplier is shown below:
+
+
+The design consists of an 8x8 bit multiplier with 8-bit inputs (DataA and DataB) and a 16-bit output (Product8x8_out). The sequential approach is used to perform the multiplication, ensuring accurate results. The output is provided on a 16-bit bus, enabling efficient data transfer.
+
+## Multiplexed Bi-Directional Bus
+
+The design incorporates a multiplexed bi-directional bus. This approach allows the same set of pins to be used for both input and output operations, reducing the overall number of pins required for the multiplier. By multiplexing the bus, the design achieves improved resource utilization and simplifies the interface.
+
+
 
