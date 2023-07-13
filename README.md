@@ -24,9 +24,15 @@ The multiplier utilizes a sequential approach to perform the multiplication oper
 The multiplier's functionality is based on the mathematical principles of multiplication. It breaks down the 8-bit multiplicands `a` and `b` into 4-bit slices and performs partial multiplications. The final 16-bit product is obtained by summing the individual partial products according to the following equation:
 
 
-$$
-\text{result}[15..0] &= a[7..0] \times b[7..0] &= ((a[7..4] \times b[7..4]) \times 2^8) + ((a[7..4] \times b[3..0]) \times 2^4) + ((a[3..0] \times b[7..4]) \times 2^4) + (a[3..0] \times b[3..0] \times 2^0)
-$$
+\[
+\begin{align*}
+\text{result}[15..0] &= a[7..0] \times b[7..0] \\
+&= ((a[7..4] \times b[7..4]) \times 2^8) \\
+&\quad+ ((a[7..4] \times b[3..0]) \times 2^4) \\
+&\quad+ ((a[3..0] \times b[7..4]) \times 2^4) \\
+&\quad+ (a[3..0] \times b[3..0] \times 2^0)
+\end{align*}
+\]
 ### Shift-and-Add Multiplication
 
 When designing multipliers, there is always a trade-off between the speed of the multiplication process and the hardware resources used for its implementation. One simple multiplication method that is slow but efficient in terms of hardware utilization is the shift-and-add method.
