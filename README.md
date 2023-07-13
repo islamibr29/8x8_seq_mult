@@ -2,19 +2,15 @@
 
 The 8x8 Bit Sequential Multiplier is a Verilog design that implements an 8x8 bit multiplier using a sequential approach. This project aims to provide an efficient and modular solution for performing multiplication operations on 8-bit operands, resulting in a 16-bit product. The design supports various features, including multi-cycle computation, output signaling, and efficient pin utilization.
 
-## Specification
+## Sequential Multiplier Specification
+
 
 The project's goal is to build an 8x8 multiplier that takes two 8-bit multiplicands (`dataa` and `datab`) as inputs and produces a 16-bit product (`product8x8_out`). Additionally, the design provides a done flag (`done_flag`) and seven signals (`seg_a`, `seg_b`, `seg_c`, `seg_d`, `seg_e`, `seg_f`, and `seg_g`) to drive a 7-segment display. The multiplier operates in a multi-cycle fashion, requiring four clock cycles to complete the full multiplication.
 
-## Functionality
+### Functionality
 
 The multiplier utilizes a sequential approach to perform the multiplication operation. During each of the four clock cycles, a pair of 4-bit slices from `dataa` and `datab` is multiplied by a 4x4 multiplier. The resulting 4-bit slices are then accumulated to obtain the final 16-bit product. On the fifth cycle, the fully composed 16-bit product is available at the output (`product8x8_out`).
 
-### Multiplexed Bi-Directional Bus
-
-The design incorporates a multiplexed bi-directional bus. This approach allows the same set of pins to be used for both input and output operations, reducing the overall number of pins required for the multiplier. By multiplexing the bus, the design achieves improved resource utilization and simplifies the interface.
-
-![image](https://github.com/islamibr/8x8_seq_mult/assets/49861069/edeb6b5c-360e-4018-acee-bc2effda3941)
 
 ## Mathematical Principle
 
@@ -42,10 +38,9 @@ In this modified procedure, if the observed bit of A is 0, 00000000 is added to 
 By repeating the above procedure until all bits of A are shifted out, the partial result becomes the final multiplication result. To illustrate this procedure, let's consider a 4-bit example. Figure 11.3 shows the initial state, where A = 1001 and B = 1101 are the operands to be multiplied. At time 0, A is in a shift register with a register for partial results (P) on its left.
 
 ![image](https://github.com/islamibr/8x8_seq_mult/assets/49861069/5cf3ea8a-c4d0-45c3-b48c-b6bf53a121af)
-
-###  Manual Binary Multiplication
-
+*Manual binary multiplication*
 ![image](https://github.com/islamibr/8x8_seq_mult/assets/49861069/0296cb44-4010-452b-97f9-3c59fc1729bf)
+*Hardware binary multiplication*
 
 ## Block Diagram
 
