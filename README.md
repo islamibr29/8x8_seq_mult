@@ -120,8 +120,165 @@ endmodule
   <img src="https://github.com/islamibr/8x8_seq_mult/assets/49861069/6fe111f6-d24d-45d5-adc9-c2a4fa8f8830" alt="adder">
 </p>
 
+#### 4x4 Multiplier
+```
+module mult4x4(
+  input [3:0] dataa,
+  input [3:0] datab,
+  output [7:0] product
+);
+
+  assign product = dataa * datab;
+
+endmodule
+```
+<p align="center">
+  <img src="https://github.com/islamibr/8x8_seq_mult/assets/49861069/43ace1d4-3ac6-4f4a-8aeb-c70afadac861" alt="multi">
+</p>
+
+### Multiplexer
+```
+module mux4 (
+input [3:0] mux_in_a, mux_in_b,
+input [1:0] mux_sel,
+output reg [3:0] mux_out
+);
+
+always @ (*)
+begin
+	if (mux_sel == 0) begin
+	mux_out = mux_in_a;
+	end
+	else begin
+	mux_out = mux_in_b;
+	end
+end
+
+endmodule
+```
+<p align="center">
+  <img src="https://github.com/islamibr/8x8_seq_mult/assets/49861069/914b86aa-58e0-4c7d-b838-849e77e249b7" alt="mux">
+</p>
+
+### Shifter
+- If shift_cntrl = 0 or 3, then no shift
+- If shift_cntrl =1, then 4-bit shift left
+- If shift_cntrl = 2, then 8-bit shift left
+
+```
+module shifter (
+  input [7:0] inp,
+  input [1:0] shift_cntrl,
+  output reg [15:0] shift_out
+);
 
 
+  always @(*) begin
+    case(shift_cntrl)
+      2'b00: shift_out = {8'b0000_0000, inp};
+      2'b01: shift_out = {4'b0000, inp, 4'b0000};
+      2'b10: shift_out = {inp, 8'b0000_0000};
+      2'b11: shift_out = {8'b0000_0000, inp};
+    endcase
+  end
+
+endmodule
+```
+<p align="center">
+  <img src="https://github.com/islamibr/8x8_seq_mult/assets/49861069/b06a6c73-95ee-4c21-ac3c-0fd5f13964f1" alt="shift">
+</p>
+
+
+#### Synchronous 16-bit register
+- 16-bit register where sclr_n is a reset signal and clk_ena is a clock enable signal
+- If clk_ena is high and sclr_n is low then the output of register is cleared.
+- If clk_ena is high and sclr_n is high then output of register is set equal to its input.
+- If clk_ena is low then do nothing.
+  
+```
+module reg16(
+input clk, sclr_n, clk_ena,
+input [15:0] datain,
+output reg[15:0] reg_out
+);
+
+always @(posedge clk) begin
+ 
+  2'b00 : reg_out = reg_out;
+  2'b01 : reg_out = reg_out;
+  2'b10 : reg_out = 16'b 0000_0000_0000_0000;
+  2'b11 : reg_out = datain ;
+endcase
+
+end
+
+endmodule
+```
+<p align="center">
+  <img src="https://github.com/islamibr/8x8_seq_mult/assets/49861069/a9ca6bb6-b094-4eba-bc15-b3304d626c7e" alt="reg">
+</p>
+
+#### Counter with asynchronous control
+- 2-bit counter where aclr_n is a reset signal 
+- If aclr_n is low, then counter goes to 00 immediately
+- If aclr_n is high, output of counter increments by 1 on every rising edge clock
+
+```
+module counter (
+  input wire clk,
+  input wire aclr_n,
+  output reg [1:0] count_out
+);
+
+  always @(posedge clk or negedge aclr_n) begin
+    if (!aclr_n)
+      count_out <= 2'b00;
+    else
+      count_out <= count_out + 1;
+  end
+
+endmodule
+```
+<p align="center">
+  <img src="https://github.com/islamibr/8x8_seq_mult/assets/49861069/251c1ba5-514b-4034-8ddc-0757ba2bcb4b" alt="reg">
+</p>
+
+#### Seven-Segment Display Decoder
+<p align="center">
+  <img src="https://github.com/islamibr/8x8_seq_mult/assets/49861069/778d1fca-cbb4-4f75-9ac1-459e9b67e1d8" alt="table">
+</p>
+
+```
+module seven_segment_cntrl (
+input [2:0] inp,
+output reg seg_a, seg_b, seg_c, seg_d, seg_e, seg_f, seg_g
+);
+
+always @(*) begin
+
+  case (inp)
+  
+3'b000: {seg_a, seg_b, seg_c, seg_d, seg_e, seg_f, seg_g} = 7'b1111110; //0
+3'b001: {seg_a, seg_b, seg_c, seg_d, seg_e, seg_f, seg_g} = 7'b0110000; //1
+3'b010: {seg_a, seg_b, seg_c, seg_d, seg_e, seg_f, seg_g} = 7'b1101101; //2
+3'b011: {seg_a, seg_b, seg_c, seg_d, seg_e, seg_f, seg_g} = 7'b1111001; //3
+
+default:
+{seg_a, seg_b, seg_c, seg_d, seg_e, seg_f, seg_g} = 7'b1001111; 
+  endcase
+
+end
+
+endmodule
+```
+<p align="center">
+  <img src="https://github.com/islamibr/8x8_seq_mult/assets/49861069/06c8b88d-4344-4dbf-8ae5-7db80586a62b" alt="7seg">
+</p>
+
+#### Multiplier controller
+<p align="center">
+  <img src="https://github.com/islamibr/8x8_seq_mult/assets/49861069/bf9efa75-66ab-455c-8ed2-002a34a6e73c" alt="fsm">
+</p>
 
 
 
