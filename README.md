@@ -70,6 +70,7 @@ For example, consider the operation of multiplying 9 and 13. By following the ha
 This hardware-oriented approach efficiently performs multiplication in the 8x8 bit sequential multiplier, gradually accumulating the result in the A and P registers over multiple cycles.
 
 ![image](https://github.com/islamibr/8x8_seq_mult/assets/49861069/e08da817-3a64-43b8-942d-5c0aad0cc9b0)
+![image](https://github.com/islamibr/8x8_seq_mult/assets/49861069/820e43f6-c47f-4fd3-88b9-fefbf86687d2)
 
 
 
