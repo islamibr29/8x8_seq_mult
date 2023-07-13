@@ -284,9 +284,7 @@ The state machine in the MID state performs cross multiplication ($a[3..0] \time
 
 The state machine in the MSB state multiplies the highest 4 bits of the two 8-bit multiplicands ($a[7..4] \times b[7..4] \times 2^8$). This product is added with the content of the accumulator and clocked back into the accumulator. This result is the final product:
 
-$$
-\text{result}[15..0] = a[7..0] \times b[7..0] = ((a[7..4] \times b[7..4]) \times 2^8) + ((a[7..4] \times b[3..0]) \times 2^4) + ((a[3..0] \times b[7..4]) \times 2^4) + (a[3..0] \times b[3..0] \times 2^0)
-$$
+![CodeCogsEqn](https://github.com/islamibr/8x8_seq_mult/assets/49861069/d10aeb9d-f56b-451c-9eea-27d25b1fb2de)
 
 The state machine in the CALC_DONE state asserts the `done_flag` output to indicate that the final product has been calculated and is ready for reading by downstream logic.
 
