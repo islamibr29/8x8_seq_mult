@@ -25,7 +25,7 @@ The multiplier's functionality is based on the mathematical principles of multip
 
 
 $$
-\text{result}[15..0] = a[7..0] \times b[7..0] \\ = ((a[7..4] \times b[7..4]) \times 2^8) + ((a[7..4] \times b[3..0]) \times 2^4) + ((a[3..0] \times b[7..4]) \times 2^4) + (a[3..0] \times b[3..0] \times 2^0)
+\text{result}[15..0] &= a[7..0] \times b[7..0] &= ((a[7..4] \times b[7..4]) \times 2^8) + ((a[7..4] \times b[3..0]) \times 2^4) + ((a[3..0] \times b[7..4]) \times 2^4) + (a[3..0] \times b[3..0] \times 2^0)
 $$
 ### Shift-and-Add Multiplication
 
