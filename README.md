@@ -56,21 +56,7 @@ By repeating the above procedure until all bits of A are shifted out, the partia
   <em>Hardware binary multiplication</em>
 </p>
 
-<p align="center">
-  <img src="https://github.com/islamibr/8x8_seq_mult/assets/49861069/053b19f3-4d3a-4370-8e96-2c1fc8f947b6" alt="data and control">
-  <br>
-  <em>Data and Control</em>
-</p>
-
-## Block Diagram
-
-The block diagram of the 8x8 bit sequential multiplier is shown below:
-
-
-
-The design consists of an 8x8 bit multiplier with 8-bit inputs (DataA and DataB) and a 16-bit output (Product8x8_out). The sequential approach is used to perform the multiplication, ensuring accurate results. The output is provided on a 16-bit bus, enabling efficient data transfer.
-
-## Hardware-Oriented Multiplication Process
+### Hardware-Oriented Multiplication Process
 
 The 8x8 bit sequential multiplier design implements a hardware-oriented multiplication process. Let's explore the steps involved in this process:
 
@@ -83,6 +69,44 @@ The 8x8 bit sequential multiplier design implements a hardware-oriented multipli
 For example, consider the operation of multiplying 9 and 13. By following the hardware-oriented multiplication process, the result obtained is 117.
 
 This hardware-oriented approach efficiently performs multiplication in the 8x8 bit sequential multiplier, gradually accumulating the result in the A and P registers over multiple cycles.
+
+<p align="center">
+  <img src="https://github.com/islamibr/8x8_seq_mult/assets/49861069/053b19f3-4d3a-4370-8e96-2c1fc8f947b6" alt="data and control">
+  <br>
+  <em>Data and Control</em>
+</p>
+
+## Sequential Multiplier Design
+### Control Data Partitioning
+The multiplier consists of two main components: the datapath and the controller. The datapath encompasses registers, logic units, and interconnecting buses, while the controller acts as a state machine responsible for generating control signals that govern the flow of data into the registers.
+
+Both the datapath registers and the controller are synchronized by a common clock signal. Upon the rising edge of the clock, the controller transitions to a new state. In this state, it issues multiple control signals that trigger various actions within the datapath components. The datapath requires a certain amount of time, from one clock edge to the next, for all activities to settle and stabilize.
+
+During this time period, values that need to be processed within the datapath are clocked into the corresponding registers with each clock edge. This ensures the proper synchronization and orderly progression of data throughout the multiplier.
+
+<p align="center">
+  <img src="https://github.com/islamibr/8x8_seq_mult/assets/49861069/579e12a0-5a2a-4a7d-85ab-badafa51a20c" alt="Timing">
+  <br>
+  <em>Timing</em>
+</p>
+
+
+### Multiplier Datapath and Controller
+
+<p align="center">
+  <img src="https://github.com/islamibr/8x8_seq_mult/assets/49861069/cb2b5981-6e38-4951-a2de-af3769700732" alt="8x8 Sequential Multiplier">
+  <br>
+  <em>8x8 Sequential Multiplier</em>
+</p>
+
+<p align="center">
+  <img src="https://github.com/islamibr/8x8_seq_mult/assets/49861069/09a63d7c-3b38-4291-a80c-c0e9f74dad42" alt="8x8 Sequential Multiplier Parts">
+  <br>
+  <em>8x8 Sequential Multiplier Parts</em>
+</p>
+
+
+
 
 
 
