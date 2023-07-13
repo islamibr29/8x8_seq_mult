@@ -56,11 +56,16 @@ By repeating the above procedure until all bits of A are shifted out, the partia
   <em>Hardware binary multiplication</em>
 </p>
 
+<p align="center">
+  <img src="https://github.com/islamibr/8x8_seq_mult/assets/49861069/053b19f3-4d3a-4370-8e96-2c1fc8f947b6" alt="data and control">
+  <br>
+  <em>Data and Control</em>
+</p>
 
 ## Block Diagram
 
 The block diagram of the 8x8 bit sequential multiplier is shown below:
-![image](https://github.com/islamibr/8x8_seq_mult/assets/49861069/053b19f3-4d3a-4370-8e96-2c1fc8f947b6)
+
 
 
 The design consists of an 8x8 bit multiplier with 8-bit inputs (DataA and DataB) and a 16-bit output (Product8x8_out). The sequential approach is used to perform the multiplication, ensuring accurate results. The output is provided on a 16-bit bus, enabling efficient data transfer.
@@ -78,9 +83,6 @@ The 8x8 bit sequential multiplier design implements a hardware-oriented multipli
 For example, consider the operation of multiplying 9 and 13. By following the hardware-oriented multiplication process, the result obtained is 117.
 
 This hardware-oriented approach efficiently performs multiplication in the 8x8 bit sequential multiplier, gradually accumulating the result in the A and P registers over multiple cycles.
-
-![image](https://github.com/islamibr/8x8_seq_mult/assets/49861069/e08da817-3a64-43b8-942d-5c0aad0cc9b0)
-
 
 
 
