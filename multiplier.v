@@ -17,7 +17,7 @@ module Multiplier4BitTestBench;
   
   wire [7:0] product;
   
-  multiplier_4bit dut(
+  mult4x4 dut(
     .dataa(dataa),
     .datab(datab),
     .product(product)
