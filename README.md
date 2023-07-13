@@ -23,16 +23,9 @@ The multiplier utilizes a sequential approach to perform the multiplication oper
 
 The multiplier's functionality is based on the mathematical principles of multiplication. It breaks down the 8-bit multiplicands `a` and `b` into 4-bit slices and performs partial multiplications. The final 16-bit product is obtained by summing the individual partial products according to the following equation:
 
+![CodeCogsEqn (1)](https://github.com/islamibr/8x8_seq_mult/assets/49861069/f54931f8-c6cd-462e-8b03-06bad1925333)
 
-\[
-\begin{align*}
-\text{result}[15..0] &= a[7..0] \times b[7..0] \\
-&= ((a[7..4] \times b[7..4]) \times 2^8) \\
-&\quad+ ((a[7..4] \times b[3..0]) \times 2^4) \\
-&\quad+ ((a[3..0] \times b[7..4]) \times 2^4) \\
-&\quad+ (a[3..0] \times b[3..0] \times 2^0)
-\end{align*}
-\]
+
 ### Shift-and-Add Multiplication
 
 When designing multipliers, there is always a trade-off between the speed of the multiplication process and the hardware resources used for its implementation. One simple multiplication method that is slow but efficient in terms of hardware utilization is the shift-and-add method.
@@ -291,9 +284,8 @@ The state machine in the MID state performs cross multiplication ($a[3..0] \time
 
 The state machine in the MSB state multiplies the highest 4 bits of the two 8-bit multiplicands ($a[7..4] \times b[7..4] \times 2^8$). This product is added with the content of the accumulator and clocked back into the accumulator. This result is the final product:
 
-$$
-\text{result}[15..0] = a[7..0] \times b[7..0] \\ = ((a[7..4] \times b[7..4]) \times 2^8) + ((a[7..4] \times b[3..0]) \times 2^4) + ((a[3..0] \times b[7..4]) \times 2^4) + (a[3..0] \times b[3..0] \times 2^0)
-$$
+![CodeCogsEqn (1)](https://github.com/islamibr/8x8_seq_mult/assets/49861069/f54931f8-c6cd-462e-8b03-06bad1925333)
+
 The state machine in the CALC_DONE state asserts the `done_flag` output to indicate that the final product has been calculated and is ready for reading by downstream logic.
 
 The state machine in the ERR state indicates that incorrect inputs have been received.
