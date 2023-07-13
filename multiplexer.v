@@ -23,7 +23,7 @@ module Mux_TestBench();
  reg [1:0] selector;
  wire [3:0] aout;
  
- Mux mux(
+ mux4 mux(
  .dataa(dataa),
  .datab(datab),
  .selector(selector),
