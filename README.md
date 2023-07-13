@@ -151,6 +151,7 @@ datab = 8'b 0000_1111;
   
 endmodule
 ```
+![WhatsApp Image 2023-07-13 at 11 57 26 AM](https://github.com/islamibr/8x8_seq_mult/assets/49861069/b1f3274a-f4d5-4ec5-bc9d-7ac41be86c9e)
 
 #### 4x4 Multiplier
 ```
@@ -256,6 +257,7 @@ end
 
 endmodule
 ```
+![WhatsApp Image 2023-07-13 at 7 17 02 PM](https://github.com/islamibr/8x8_seq_mult/assets/49861069/9f138790-ffae-4029-9a13-8df727535477)
 
 ### Shifter
 - If shift_cntrl = 0 or 3, then no shift
@@ -467,6 +469,7 @@ module Asynchronous_Counter_TestBench();
 
 endmodule
 ```
+![WhatsApp Image 2023-07-13 at 11 57 26 AM (1)](https://github.com/islamibr/8x8_seq_mult/assets/49861069/5cc80356-d84d-4427-91e9-cbe735039769)
 
 #### Seven-Segment Display Decoder
 <p align="center">
