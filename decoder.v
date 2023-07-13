@@ -25,7 +25,7 @@ module Seven_Segment_Decoder_TestBench();
 reg [2:0] inp;
 wire seg_a, seg_b, seg_c, seg_d, seg_e, seg_f, seg_g;
 
-Seven_Segment_Decoder SSD (
+seven_segment_cntrl SSD (
 .inp(inp),
 .seg_a(seg_a),
 .seg_b(seg_b),
