@@ -21,7 +21,7 @@ module Asynchronous_Counter_TestBench();
   wire [1:0] count;
 
   // Instantiate the Asynchronous_Counter module
-  Asynchronous_Counter DUT (
+  counter DUT (
     .clk(clk),
     .aclr_n(aclr_n),
     .count(count)
