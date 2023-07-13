@@ -105,6 +105,22 @@ During this time period, values that need to be processed within the datapath ar
   <em>8x8 Sequential Multiplier Parts</em>
 </p>
 
+#### Adder 16-Bit
+```
+module adder(
+  input [15:0] dataa,
+  input [15:0] datab,
+  output [15:0] sum
+);
+
+  assign sum = dataa + datab;
+
+endmodule
+```
+<p align="center">
+  <img src="https://github.com/islamibr/8x8_seq_mult/assets/49861069/6fe111f6-d24d-45d5-adc9-c2a4fa8f8830" alt="adder">
+</p>
+
 
 
 
